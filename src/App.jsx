@@ -7,6 +7,7 @@ import ManageSkill from './pages/ManageSkill';
 import ManageTimeline from './pages/ManageTimeline';
 import ManageProjects from './pages/ManageProjects';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { getLoginUser } from './features/slices/userSlice';
 import { useEffect } from 'react';

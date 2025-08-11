@@ -25,6 +25,7 @@ export function LoginForm({ className, ...props }) {
       dispatch(clearallErrors());
     }
     if (isAuthenticated) {
+      toast.success("Login Successfull!")
       navigate('/');
     }
   }, [dispatch, loading, isAuthenticated, error]);
@@ -37,7 +38,7 @@ export function LoginForm({ className, ...props }) {
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Welcome back</h1>
                 <p className="text-muted-foreground text-balance">
-                  Login to your Admin Panel
+                  Login to Admin Panel
                 </p>
               </div>
               <div className="grid gap-3">
@@ -84,10 +85,7 @@ export function LoginForm({ className, ...props }) {
           </div>
         </CardContent>
       </Card>
-      <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{' '}
-        and <a href="#">Privacy Policy</a>.
-      </div>
+     
     </div>
   );
 }
