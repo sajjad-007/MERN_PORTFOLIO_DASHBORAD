@@ -11,6 +11,7 @@ import {
   clearallPasswordErrors,
   resetPassword,
 } from '@/features/slices/passForgotResetSlice';
+import { Loader2Icon } from 'lucide-react';
 
 const ResetPassword = ({ className, ...props }) => {
   const { token } = useParams();
@@ -72,13 +73,20 @@ const ResetPassword = ({ className, ...props }) => {
                   onChange={e => setConfirmPassword(e.target.value)}
                 />
               </div>
-              <Button
-                type="submit"
-                className="w-full capitalize"
-                onClick={handleResetPassword}
-              >
-                password reset
-              </Button>
+              {loading ? (
+                <Button size="sm" disabled>
+                  <Loader2Icon className="animate-spin" />
+                  Please wait
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  className="w-full capitalize"
+                  onClick={handleResetPassword}
+                >
+                  password reset
+                </Button>
+              )}
             </div>
           </form>
           {/* LOGIN IMAGE PART */}

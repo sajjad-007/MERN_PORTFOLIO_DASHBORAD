@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearallErrors, login } from '@/features/slices/userSlice';
 import { toast } from 'react-toastify';
+import { Loader2Icon } from 'lucide-react';
 
 export function LoginForm({ className, ...props }) {
   const [email, setEmail] = useState('');
@@ -25,7 +26,7 @@ export function LoginForm({ className, ...props }) {
       dispatch(clearallErrors());
     }
     if (isAuthenticated) {
-      toast.success("Login Successfull!")
+      toast.success('Login Successfull!');
       navigate('/');
     }
   }, [dispatch, loading, isAuthenticated, error]);
@@ -70,9 +71,20 @@ export function LoginForm({ className, ...props }) {
                   onChange={e => setPassword(e.target.value)}
                 />
               </div>
-              <Button type="submit" className="w-full" onClick={handleLoginBtn}>
-                Login
-              </Button>
+              {loading ? (
+                <Button size="sm" disabled>
+                  <Loader2Icon className="animate-spin" />
+                  Please wait
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  className="w-full"
+                  onClick={handleLoginBtn}
+                >
+                  Login
+                </Button>
+              )}
             </div>
           </form>
           {/* LOGIN IMAGE PART */}
@@ -85,7 +97,6 @@ export function LoginForm({ className, ...props }) {
           </div>
         </CardContent>
       </Card>
-     
     </div>
   );
 }
