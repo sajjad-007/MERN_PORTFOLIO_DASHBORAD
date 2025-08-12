@@ -52,19 +52,19 @@ const userSlice = createSlice({
     //logout in user data get
     logoutRequest(state, action) {
       (state.loading = true),
-        (state.user = {}),
-        (state.isAuthenticated = false),
+        (state.message = null),
         (state.error = null);
     },
     logoutSuccess(state, action) {
       (state.loading = false),
-        (state.user = action.payload),
-        (state.isAuthenticated = true),
+        (state.message = action.payload),
+        (state.user = {}),
+        (state.isAuthenticated = false),
         (state.error = null);
     },
     logoutFailed(state, action) {
       (state.loading = false),
-        (state.user = {}),
+        (state.message = null),
         (state.isAuthenticated = false),
         (state.error = action.payload);
     },
@@ -177,12 +177,13 @@ export const getLoginUser = () => async dispatch => {
     console.error('error from login slice', error);
   }
 };
-//log out route not working yet
+//log out route
 export const logoutUser = () => async dispatch => {
   dispatch(userSlice.actions.logoutRequest());
   try {
     const { data } = await axios.post(
       'http://localhost:4000/api/v1/user/logout',
+      {},
       {
         withCredentials: true,
       }
@@ -195,7 +196,7 @@ export const logoutUser = () => async dispatch => {
         error?.response?.data?.message || error.message
       )
     );
-    console.error('error from login slice', error);
+    console.error('error from logout slice', error);
   }
 };
 export const manageSkill = () => async dispatch => {
@@ -203,6 +204,7 @@ export const manageSkill = () => async dispatch => {
   try {
     const { data } = await axios.post(
       'http://localhost:4000/api/v1/addSkill/create',
+      {},
       {
         withCredentials: true,
       }
@@ -223,6 +225,7 @@ export const manageTimeline = () => async dispatch => {
   try {
     const { data } = await axios.post(
       'http://localhost:4000/api/v1/timeline/create',
+      {},
       {
         withCredentials: true,
       }
@@ -243,6 +246,7 @@ export const manageProject = () => async dispatch => {
   try {
     const { data } = await axios.post(
       'http://localhost:4000/api/v1/project/create',
+      {},
       {
         withCredentials: true,
       }

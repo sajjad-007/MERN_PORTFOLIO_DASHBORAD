@@ -23,8 +23,8 @@ const ForgotPassword = ({ className, ...props }) => {
       toast.error(error);
       dispatch(clearallPasswordErrors());
     }
-    if(message){
-      toast.success(message)
+    if (message !== null) {
+      toast.success(message);
     }
     if (isAuthenticated) {
       navigateTo('/');

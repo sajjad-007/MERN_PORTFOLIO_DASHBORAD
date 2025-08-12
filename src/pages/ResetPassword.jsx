@@ -12,6 +12,7 @@ import {
   resetPassword,
 } from '@/features/slices/passForgotResetSlice';
 import { Loader2Icon } from 'lucide-react';
+import { getLoginUser } from '@/features/slices/userSlice';
 
 const ResetPassword = ({ className, ...props }) => {
   const { token } = useParams();
@@ -29,8 +30,9 @@ const ResetPassword = ({ className, ...props }) => {
       toast.error(error);
       dispatch(clearallPasswordErrors());
     }
-    if (message) {
+    if (message !== null) {
       toast.success(message);
+      dispatch(getLoginUser());
     }
     if (isAuthenticated) {
       navigateTo('/');
