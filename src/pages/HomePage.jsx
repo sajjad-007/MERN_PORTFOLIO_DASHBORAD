@@ -33,7 +33,7 @@ import AddSoftApplication from './sub-component/AddSoftApplication';
 
 
 const HomePage = () => {
-  const [active, setActive] = useState('');
+  const [active, setActive] = useState('Dashboard');
   const dispatch = useDispatch();
   const { error, loading, isAuthenticated, message, user } = useSelector(
     state => state.user
@@ -86,8 +86,8 @@ const HomePage = () => {
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 hidden w-14 flex-col border bg-background z-50 sm:flex">
         <nav className="flex flex-col items-center gap-4 px-2 sm:py-5 ">
-          <Link className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base md:mt-5 my-4">
-            <Package2 className="h-4 w-4 transition-all  group-hover:scale-110" />
+          <Link className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold text-sidebar-foreground md:h-8 md:w-8 md:text-base md:mt-5">
+            <Package2 className="h-5 w-5 transition-all  group-hover:scale-110" />
             <span className="sr-only">hello world</span>
           </Link>
           {/* Dashboard */}
