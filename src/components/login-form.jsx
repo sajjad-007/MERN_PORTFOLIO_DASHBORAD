@@ -26,7 +26,6 @@ export function LoginForm({ className, ...props }) {
       dispatch(clearallErrors());
     }
     if (isAuthenticated) {
-      toast.success('Login Successfull!');
       navigate('/');
     }
   }, [dispatch, loading, isAuthenticated, error]);

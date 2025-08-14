@@ -51,9 +51,7 @@ const userSlice = createSlice({
     },
     //logout in user data get
     logoutRequest(state, action) {
-      (state.loading = true),
-        (state.message = null),
-        (state.error = null);
+      (state.loading = true), (state.message = null), (state.error = null);
     },
     logoutSuccess(state, action) {
       (state.loading = false),
@@ -68,62 +66,30 @@ const userSlice = createSlice({
         (state.isAuthenticated = false),
         (state.error = action.payload);
     },
-    // manage skill
-    manageSkillRequest(state, action) {
-      (state.loading = true),
-        (state.isAuthenticated = false),
-        (state.error = null);
+    //manage update profile
+    updateProfileRequest(state, action) {
+      state.loading = true;
+      state.error = null;
       state.message = null;
+      state.isUpdate = false;
     },
-    manageSkillSuccess(state, action) {
-      (state.loading = false),
-        (state.isAuthenticated = true),
-        (state.error = null);
-      state.message = action.payload;
+    updateProfileSuccess(state, action) {
+      state.loading = false;
+      state.error = null;
+      state.message = action.payload
+      state.isUpdate = true;
     },
-    manageSkillFailed(state, action) {
-      (state.loading = false),
-        (state.isAuthenticated = false),
-        (state.error = action.payload);
+    updateProfileFailed(state, action) {
+      state.loading = false;
+      state.error = action.payload;
       state.message = null;
+      state.isUpdate = false;
     },
-    //manage time line
-    manageTimelineRequest(state, action) {
-      (state.loading = true),
-        (state.isAuthenticated = false),
-        (state.error = null);
+    resetProfileAfterUpdate(state, action) {
+      state.isUpdate = false;
+      state.error = null;
       state.message = null;
-    },
-    manageTimelineSuccess(state, action) {
-      (state.loading = false),
-        (state.isAuthenticated = true),
-        (state.error = null);
-      state.message = action.payload;
-    },
-    manageTimelineFailed(state, action) {
-      (state.loading = false),
-        (state.isAuthenticated = false),
-        (state.error = action.payload);
-      state.message = null;
-    },
-    //manage projects
-    manageProjectsRequest(state, action) {
-      (state.loading = true),
-        (state.isAuthenticated = false),
-        (state.error = null);
-      state.message = null;
-    },
-    manageProjectsSuccess(state, action) {
-      (state.loading = false),
-        (state.isAuthenticated = true),
-        (state.error = null);
-      state.message = action.payload;
-    },
-    manageProjectsFailed(state, action) {
-      (state.loading = false),
-        (state.isAuthenticated = false),
-        (state.error = action.payload);
-      state.message = null;
+      state.loading = false;
     },
     //clear all errors
     clearAllErrors(state, action) {
@@ -132,6 +98,7 @@ const userSlice = createSlice({
   },
 });
 
+// log in api
 export const login = (email, password) => async dispatch => {
   dispatch(userSlice.actions.loginRequest());
   try {
@@ -157,6 +124,7 @@ export const login = (email, password) => async dispatch => {
     console.error('error from login slice', error);
   }
 };
+// get user information api
 export const getLoginUser = () => async dispatch => {
   dispatch(userSlice.actions.getUserRequest());
   try {
@@ -177,7 +145,7 @@ export const getLoginUser = () => async dispatch => {
     console.error('error from login slice', error);
   }
 };
-//log out route
+//log out route api
 export const logoutUser = () => async dispatch => {
   dispatch(userSlice.actions.logoutRequest());
   try {
@@ -199,68 +167,34 @@ export const logoutUser = () => async dispatch => {
     console.error('error from logout slice', error);
   }
 };
-export const manageSkill = () => async dispatch => {
-  dispatch(userSlice.actions.manageSkillRequest());
+// profile update api
+export const updateProfileInfo = myData => async dispatch => {
+  dispatch(userSlice.actions.updateProfileRequest());
   try {
-    const { data } = await axios.post(
-      'http://localhost:4000/api/v1/addSkill/create',
-      {},
+    const { data } = await axios.put(
+      'http://localhost:4000/api/v1/user/updateProfile',
+      myData, // x(warning) => don't use {mydata}  the server receives a nested structure instead of the actual FormData.
       {
         withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       }
     );
-    dispatch(userSlice.actions.manageSkillSuccess(data.message));
+    dispatch(userSlice.actions.updateProfileSuccess(data.message));
     dispatch(userSlice.actions.clearAllErrors());
   } catch (error) {
     dispatch(
-      userSlice.actions.manageSkillFailed(
+      userSlice.actions.updateProfileFailed(
         error?.response?.data?.message || error.message
       )
     );
     console.error('error from manage skill', error);
   }
 };
-export const manageTimeline = () => async dispatch => {
-  dispatch(userSlice.actions.manageTimelineRequest());
-  try {
-    const { data } = await axios.post(
-      'http://localhost:4000/api/v1/timeline/create',
-      {},
-      {
-        withCredentials: true,
-      }
-    );
-    dispatch(userSlice.actions.manageTimelineSuccess(data.message));
-    dispatch(userSlice.actions.clearAllErrors());
-  } catch (error) {
-    dispatch(
-      userSlice.actions.manageTimelineFailed(
-        error?.response?.data?.message || error.message
-      )
-    );
-    console.error('error from manage skill', error);
-  }
-};
-export const manageProject = () => async dispatch => {
-  dispatch(userSlice.actions.manageProjectsRequest());
-  try {
-    const { data } = await axios.post(
-      'http://localhost:4000/api/v1/project/create',
-      {},
-      {
-        withCredentials: true,
-      }
-    );
-    dispatch(userSlice.actions.manageProjectsSuccess(data.message));
-    dispatch(userSlice.actions.clearAllErrors());
-  } catch (error) {
-    dispatch(
-      userSlice.actions.manageProjectsFailed(
-        error?.response?.data?.message || error.message
-      )
-    );
-    console.error('error from manage skill', error);
-  }
+// reset your profile after you updated your profile
+export const resetProfile = () => async dispatch => {
+  dispatch(userSlice.actions.resetProfileAfterUpdate());
 };
 export const clearallErrors = () => async dispatch => {
   dispatch(userSlice.actions.clearAllErrors());

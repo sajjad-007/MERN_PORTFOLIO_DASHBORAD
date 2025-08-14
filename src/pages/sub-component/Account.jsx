@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Profile from './Profile';
 import UpdateProfile from './UpdateProfile';
 import UpdatePassword from './UpdatePassword';
+
+
 
 const Account = () => {
   const [selectedComponent, setSelectedComponent] = useState('Profile');
@@ -12,6 +15,7 @@ const Account = () => {
         return <Profile />;
         break;
       case 'Update Profile':
+        // return <NewUpdateProfile />;
         return <UpdateProfile />;
         break;
       case 'Update Password':
