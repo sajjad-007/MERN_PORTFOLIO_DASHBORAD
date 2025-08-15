@@ -10,7 +10,7 @@ import {
   clearallErrors,
   getLoginUser,
   resetProfile,
-  updateProfileInfo,
+  updateProfile,
 } from '@/features/slices/userSlice';
 import { toast } from 'react-toastify';
 import { Loader2Icon } from 'lucide-react';
@@ -19,7 +19,7 @@ const UpdateProfile = () => {
   const { user, message, loading, error, isUpdate } = useSelector(
     state => state.user
   );
-  const dispatch = useDispatch();
+
   //required filed start
   const [fullName, setFullName] = useState(user && user.fullName);
   const [email, setEmail] = useState(user && user.email);
@@ -53,7 +53,7 @@ const UpdateProfile = () => {
     user && (user.facebookUrl === 'undefined' ? '' : user.facebookUrl)
   );
   //Non-Required filed end
-
+  const dispatch = useDispatch();
   //handle avatar preview using fileReader() method
   const hadnleAvatarPreview = e => {
     const file = e.target.files[0];
@@ -86,44 +86,34 @@ const UpdateProfile = () => {
     formData.append('facebookUrl', facebookUrl);
     formData.append('linkedinUrl', linkedinUrl);
     formData.append('instagramUrl', instagramUrl);
-    dispatch(updateProfileInfo(formData));
+    dispatch(updateProfile(formData));
   };
-  // Sync form state with user data when it updates
-  useEffect(() => {
-    if (user) {
-      setFullName(user.fullName || '');
-      setEmail(user.email || '');
-      setPhoneNumber(user.phoneNumber || '');
-      setPortfolioUrl(user.portfolioUrl || '');
-      setAboutMe(user.aboutMe || '');
-      setAvatarPreview(user.avatar?.url || '');
-      setResumePreview(user.resume?.url || '');
-      setGithubUrl(user.githubUrl === 'undefined' ? '' : user.githubUrl || '');
-      setLinkedinUrl(
-        user.linkedinUrl === 'undefined' ? '' : user.linkedinUrl || ''
-      );
-      setInstagramUrl(
-        user.instagramUrl === 'undefined' ? '' : user.instagramUrl || ''
-      );
-      setFacebookUrl(
-        user.facebookUrl === 'undefined' ? '' : user.facebookUrl || ''
-      );
-    }
-  }, [user]);
-
+  // Handle profile update responses
   useEffect(() => {
     if (error) {
       toast.error(error);
       dispatch(clearallErrors());
     }
-    if (isUpdate) {
-      dispatch(getLoginUser());
-      dispatch(resetProfile());
-    }
-    if (message) {
+    if (isUpdate && message) {
       toast.success(message);
+      dispatch(getLoginUser());
+      // Clear the update state after showing success
+      setTimeout(() => {
+        dispatch(resetProfile());
+      }, 100);
     }
-  }, [dispatch, loading, error, isUpdate]);
+  }, [dispatch, error, isUpdate, message]);
+
+  // Cleanup on component unmount
+  useEffect(() => {
+    return () => {
+      // Clear any lingering messages or errors when component unmounts
+      if (isUpdate || message || error) {
+        dispatch(resetProfile());
+        dispatch(clearallErrors());
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -251,22 +241,28 @@ const UpdateProfile = () => {
                 />
               </div>
             </div>
-            <div className="btn mt-10 w-full">
-              {loading ? (
-                <Button size="sm" disabled>
-                  <Loader2Icon className="animate-spin" />
-                  Please wait
-                </Button>
-              ) : (
+            {!loading ? (
+              <div className="btn mt-10 w-full">
                 <Button
                   type="submit"
                   className="w-full"
                   onClick={handleUpdateMyProfile}
                 >
-                  Login
+                  Update Profile
                 </Button>
-              )}
-            </div>
+              </div>
+            ) : (
+              <div className="mx-auto">
+                <Button
+                  size="sm"
+                  disabled
+                  className={'w-[300px] h-[40px] text-lg'}
+                >
+                  <Loader2Icon className="animate-spin" />
+                  Please wait
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </div>

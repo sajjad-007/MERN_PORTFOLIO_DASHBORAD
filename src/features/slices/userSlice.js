@@ -76,7 +76,7 @@ const userSlice = createSlice({
     updateProfileSuccess(state, action) {
       state.loading = false;
       state.error = null;
-      state.message = action.payload
+      state.message = action.payload;
       state.isUpdate = true;
     },
     updateProfileFailed(state, action) {
@@ -89,8 +89,27 @@ const userSlice = createSlice({
       state.isUpdate = false;
       state.error = null;
       state.message = null;
-      state.loading = false;
     },
+    // UPDATE PASSWORD
+    updatePasswordRequest(state, action) {
+      state.loading = true;
+      state.error = null;
+      state.message = null;
+      state.isUpdate = false;
+    },
+    updatePasswordSuccess(state, action) {
+      state.loading = false;
+      state.error = null;
+      state.message = action.payload;
+      state.isUpdate = true;
+    },
+    updatePasswordFailed(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+      state.message = null;
+      state.isUpdate = false;
+    },
+
     //clear all errors
     clearAllErrors(state, action) {
       state.error = null;
@@ -168,12 +187,12 @@ export const logoutUser = () => async dispatch => {
   }
 };
 // profile update api
-export const updateProfileInfo = myData => async dispatch => {
+export const updateProfile = myData => async dispatch => {
   dispatch(userSlice.actions.updateProfileRequest());
   try {
     const { data } = await axios.put(
       'http://localhost:4000/api/v1/user/updateProfile',
-      myData, // x(warning) => don't use {mydata}  the server receives a nested structure instead of the actual FormData.
+      myData, // x(warning) => don't use {mydata} fomr-data in curly bracket  the server receives a nested structure instead of the actual FormData.
       {
         withCredentials: true,
         headers: {
@@ -192,6 +211,32 @@ export const updateProfileInfo = myData => async dispatch => {
     console.error('error from manage skill', error);
   }
 };
+// profile update api
+export const updatePassword =
+  (currentPassword, newPassword, confirmPassword) => async dispatch => {
+    dispatch(userSlice.actions.updatePasswordRequest());
+    try {
+      const { data } = await axios.put(
+        'http://localhost:4000/api/v1/user/password/update',
+        { currentPassword, newPassword, confirmPassword }, // x(warning) => don't use {mydata} form-data in curly bracket  the server receives a nested structure instead of the actual FormData.
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      dispatch(userSlice.actions.updatePasswordSuccess(data.message));
+      dispatch(userSlice.actions.clearAllErrors());
+    } catch (error) {
+      dispatch(
+        userSlice.actions.updatePasswordFailed(
+          error?.response?.data?.message || error.message
+        )
+      );
+      console.error('error from manage skill', error);
+    }
+  };
 // reset your profile after you updated your profile
 export const resetProfile = () => async dispatch => {
   dispatch(userSlice.actions.resetProfileAfterUpdate());

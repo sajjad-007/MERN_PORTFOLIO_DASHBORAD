@@ -5,30 +5,10 @@ import Profile from './Profile';
 import UpdateProfile from './UpdateProfile';
 import UpdatePassword from './UpdatePassword';
 
-
-
 const Account = () => {
   const [selectedComponent, setSelectedComponent] = useState('Profile');
-  const ActiveComponents = () => {
-    switch (selectedComponent) {
-      case 'Profile':
-        return <Profile />;
-        break;
-      case 'Update Profile':
-        // return <NewUpdateProfile />;
-        return <UpdateProfile />;
-        break;
-      case 'Update Password':
-        return <UpdatePassword />;
-        break;
-
-      default:
-        return <Profile />;
-        break;
-    }
-  };
   return (
-    <div className="ml-[90px] mt-[10px]">
+    <div className="ml-[60px] mt-[10px]">
       <div className="flex min-h-screen w-full flex-col">
         <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-muted/40 p-4 md:gap-8 sm:pl-20">
           <div className="mx-auto grid w-full max-w-6xl gap-2">
@@ -68,7 +48,22 @@ const Account = () => {
               </span>
             </nav>
             <div className="grid gap-6">
-              <ActiveComponents />
+              {(() => {
+                switch (selectedComponent) {
+                  case 'Profile':
+                    return <Profile />;
+                    break;
+                  case 'Update Profile':
+                    return <UpdateProfile />;
+                    break;
+                  case 'Update Password':
+                    return <UpdatePassword />;
+                    break;
+                  default:
+                    return <Profile />;
+                    break;
+                }
+              })()}
             </div>
           </div>
         </main>
