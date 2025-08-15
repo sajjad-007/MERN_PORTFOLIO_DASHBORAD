@@ -31,7 +31,6 @@ import AddProject from './sub-component/AddProject';
 import Account from './sub-component/Account';
 import AddSoftApplication from './sub-component/AddSoftApplication';
 
-
 const HomePage = () => {
   const [active, setActive] = useState('Dashboard');
   const dispatch = useDispatch();
@@ -42,7 +41,6 @@ const HomePage = () => {
   const handlelogout = e => {
     e.preventDefault();
     dispatch(logoutUser());
-    toast.success('Logged out!');
   };
   useEffect(() => {
     if (error) {
@@ -52,36 +50,7 @@ const HomePage = () => {
     if (!isAuthenticated) {
       navigateTo('/login');
     }
-  }, [error, isAuthenticated]);
-  // using switch to routing
-  const ActiveComponent = () => {
-    switch (active) {
-      case 'Dashboard':
-        return <Dashboard />;
-        break;
-      case 'Add Skill':
-        return <AddSkill />;
-        break;
-      case 'Add Timeline':
-        return <AddTimeline />;
-        break;
-      case 'Message':
-        return <Messages />;
-        break;
-      case 'Add Poject':
-        return <AddProject />;
-        break;
-      case 'Account':
-        return <Account />;
-        break;
-      case 'Add Uses':
-        return <AddSoftApplication />;
-        break;
-      default:
-        return <Dashboard />;
-        break;
-    }
-  };
+  }, [dispatch, message, error, isAuthenticated]);
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 hidden w-14 flex-col border bg-background z-50 sm:flex">
@@ -388,7 +357,36 @@ const HomePage = () => {
           </h1>
         </div>
       </header>
-      <ActiveComponent />
+      <div className="grid gap-6">
+        {(() => {
+          switch (active) {
+            case 'Dashboard':
+              return <Dashboard />;
+              break;
+            case 'Add Skill':
+              return <AddSkill />;
+              break;
+            case 'Add Timeline':
+              return <AddTimeline />;
+              break;
+            case 'Message':
+              return <Messages />;
+              break;
+            case 'Add Poject':
+              return <AddProject />;
+              break;
+            case 'Account':
+              return <Account />;
+              break;
+            case 'Add Uses':
+              return <AddSoftApplication />;
+              break;
+            default:
+              return <Dashboard />;
+              break;
+          }
+        })()}
+      </div>
     </div>
   );
 };

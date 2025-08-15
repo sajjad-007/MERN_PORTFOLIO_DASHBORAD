@@ -133,13 +133,8 @@ export const login = (email, password) => async dispatch => {
     );
     dispatch(userSlice.actions.loginSuccess(data.user));
     dispatch(userSlice.actions.clearAllErrors());
-    console.log('success', data.user);
   } catch (error) {
-    const errorMessage =
-      error?.response?.data?.message ||
-      error?.response?.data?.error ||
-      error?.message;
-    dispatch(userSlice.actions.loginFailed(errorMessage));
+    dispatch(userSlice.actions.loginFailed(error?.response?.data?.message));
     console.error('error from login slice', error);
   }
 };
@@ -170,7 +165,6 @@ export const logoutUser = () => async dispatch => {
   try {
     const { data } = await axios.post(
       'http://localhost:4000/api/v1/user/logout',
-      {},
       {
         withCredentials: true,
       }
@@ -178,11 +172,7 @@ export const logoutUser = () => async dispatch => {
     dispatch(userSlice.actions.logoutSuccess(data.message));
     dispatch(userSlice.actions.clearAllErrors());
   } catch (error) {
-    dispatch(
-      userSlice.actions.logoutFailed(
-        error?.response?.data?.message || error.message
-      )
-    );
+    dispatch(userSlice.actions.logoutFailed(error?.response?.data?.message));
     console.error('error from logout slice', error);
   }
 };
@@ -204,9 +194,7 @@ export const updateProfile = myData => async dispatch => {
     dispatch(userSlice.actions.clearAllErrors());
   } catch (error) {
     dispatch(
-      userSlice.actions.updateProfileFailed(
-        error?.response?.data?.message || error.message
-      )
+      userSlice.actions.updateProfileFailed(error?.response?.data?.message)
     );
     console.error('error from manage skill', error);
   }
@@ -230,9 +218,7 @@ export const updatePassword =
       dispatch(userSlice.actions.clearAllErrors());
     } catch (error) {
       dispatch(
-        userSlice.actions.updatePasswordFailed(
-          error?.response?.data?.message || error.message
-        )
+        userSlice.actions.updatePasswordFailed(error?.response?.data?.message)
       );
       console.error('error from manage skill', error);
     }

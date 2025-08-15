@@ -3,6 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
   clearallErrors,
+  getLoginUser,
   resetProfile,
   updatePassword,
 } from '@/features/slices/userSlice';
@@ -27,12 +28,13 @@ const UpdatePassword = () => {
       dispatch(clearallErrors());
     }
     if (isUpdate) {
+      dispatch(getLoginUser());
       dispatch(resetProfile());
     }
     if (message) {
       toast.success(message);
     }
-  }, [dispatch, error, loading, isUpdate]);
+  }, [dispatch, error, loading, isUpdate, message]);
   return (
     <>
       <div className="w-full h-full">
@@ -50,6 +52,7 @@ const UpdatePassword = () => {
                   <Label>Current Password</Label>
                   <Input
                     type="password"
+                    value={currentPassword}
                     onChange={e => setCurrentPassword(e.target.value)}
                   />
                 </div>
@@ -57,6 +60,7 @@ const UpdatePassword = () => {
                   <Label>New Password</Label>
                   <Input
                     type="password"
+                    value={newPassword}
                     onChange={e => setNewPassword(e.target.value)}
                   />
                 </div>
@@ -64,6 +68,7 @@ const UpdatePassword = () => {
                   <Label>Confirm Password</Label>
                   <Input
                     type="password"
+                    value={confirmPassword}
                     onChange={e => setConfirmPassword(e.target.value)}
                   />
                 </div>
