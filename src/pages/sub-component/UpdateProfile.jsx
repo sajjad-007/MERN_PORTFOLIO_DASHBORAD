@@ -128,22 +128,22 @@ const UpdateProfile = () => {
             </div>
             <div className="grid gap-4">
               <div className="flex lg:justify-between lg:items-center flex-col lg:flex-row gap-5 my-5">
-                <div className="grid gap-2 w-full sm:w-72">
+                <div className="grid gap-2 w-full sm:w-60">
                   <Label> Profile Image </Label>
                   <img
                     src={avatarPreview ? avatarPreview : ''}
                     alt="avatar"
-                    className="w-full h-full sm:w-72 sm:h-72 rounded-2xl"
+                    className="w-full h-full sm:w-60 sm:h-60 rounded-2xl"
                   />
                   <div className="relative">
                     <input
                       type="file"
-                      className="input-file-btn"
+                      className="input-file-btn w-full"
                       onChange={hadnleAvatarPreview}
                     />
                   </div>
                 </div>
-                <div className="grid gap-2 w-full sm:w-72">
+                <div className="grid gap-2 w-full sm:w-60">
                   <Label>Resume</Label>
                   <Link
                     to={user && user.resume && user.resume.url}
@@ -152,13 +152,13 @@ const UpdateProfile = () => {
                     <img
                       src={resumePreview ? resumePreview : ''}
                       alt="avatar"
-                      className="w-full  h-auto sm:w-72 sm:h-72 rounded-2xl"
+                      className="w-full  h-auto sm:w-60 sm:h-60 rounded-2xl"
                     />
                   </Link>
                   <div className="relative">
                     <input
                       type="file"
-                      className="input-file-btn"
+                      className="input-file-btn w-full"
                       onChange={hadnleResumePreview}
                     />
                   </div>
@@ -169,6 +169,7 @@ const UpdateProfile = () => {
                 <Input
                   type="text"
                   value={fullName}
+                  className="w-full"
                   onChange={e => setFullName(e.target.value)}
                 />
               </div>
@@ -176,6 +177,7 @@ const UpdateProfile = () => {
                 <Label>Email</Label>
                 <Input
                   type="email"
+                  className="w-full"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                 />
@@ -184,6 +186,7 @@ const UpdateProfile = () => {
                 <Label>Phone</Label>
                 <Input
                   type="text"
+                  className="w-full"
                   value={phoneNumber}
                   onChange={e => setPhoneNumber(e.target.value)}
                 />
@@ -192,6 +195,7 @@ const UpdateProfile = () => {
                 <Label>About Me</Label>
                 <Textarea
                   value={aboutMe}
+                  className="w-full"
                   onChange={e => setAboutMe(e.target.value)}
                 />
               </div>
@@ -199,6 +203,7 @@ const UpdateProfile = () => {
                 <Label>Portfolio URL</Label>
                 <Input
                   type="text"
+                  className="w-full"
                   value={portfolioUrl}
                   placeholder="https://your-PORTFOLIO.com"
                   onChange={e => setPortfolioUrl(e.target.value)}
@@ -208,6 +213,7 @@ const UpdateProfile = () => {
                 <Label>Github URL</Label>
                 <Input
                   type="text"
+                  className="w-full"
                   placeholder="https://your-github.com"
                   value={githubUrl}
                   onChange={e => setGithubUrl(e.target.value)}
@@ -217,6 +223,7 @@ const UpdateProfile = () => {
                 <Label>LinkedIn URL</Label>
                 <Input
                   type="text"
+                  className="w-full"
                   placeholder="https://your-linkedin.com"
                   value={linkedinUrl}
                   onChange={e => setLinkedinUrl(e.target.value)}
@@ -226,6 +233,7 @@ const UpdateProfile = () => {
                 <Label>Instagram URL</Label>
                 <Input
                   type="text"
+                  className="w-full"
                   placeholder="https://your-instagram.com"
                   value={instagramUrl}
                   onChange={e => setInstagramUrl(e.target.value)}
@@ -235,6 +243,7 @@ const UpdateProfile = () => {
                 <Label>Facebook URL</Label>
                 <Input
                   type="text"
+                  className="w-full"
                   placeholder="https://your-facebook.com"
                   value={facebookUrl}
                   onChange={e => setFacebookUrl(e.target.value)}
@@ -242,21 +251,21 @@ const UpdateProfile = () => {
               </div>
             </div>
             {!loading ? (
-              <div className="btn mt-10 w-full">
+              <div className="btn mt-10 w-full ">
                 <Button
                   type="submit"
-                  className="w-full"
+                  className="w-full cursor-pointer"
                   onClick={handleUpdateMyProfile}
                 >
                   Update Profile
                 </Button>
               </div>
             ) : (
-              <div className="mx-auto">
+              <div className="mx-auto w-full">
                 <Button
                   size="sm"
                   disabled
-                  className={'w-[300px] h-[40px] text-lg'}
+                  className="w-full text-lg"
                 >
                   <Loader2Icon className="animate-spin" />
                   Please wait

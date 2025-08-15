@@ -24,7 +24,7 @@ const UpdatePassword = () => {
   };
   useEffect(() => {
     if (error) {
-      toast.error(error);
+      // toast.error(error);
       dispatch(clearallErrors());
     }
     if (isUpdate) {
@@ -48,7 +48,7 @@ const UpdatePassword = () => {
             </div>
             <form onSubmit={e => e.preventDefault()}>
               <div className="grid gap-4">
-                <div className="grid gap-2 mt-2">
+                <div className="grid gap-2 mt-2 w-full">
                   <Label>Current Password</Label>
                   <Input
                     type="password"
@@ -56,7 +56,7 @@ const UpdatePassword = () => {
                     onChange={e => setCurrentPassword(e.target.value)}
                   />
                 </div>
-                <div className="grid gap-2">
+                <div className="grid gap-2 w-full">
                   <Label>New Password</Label>
                   <Input
                     type="password"
@@ -64,7 +64,7 @@ const UpdatePassword = () => {
                     onChange={e => setNewPassword(e.target.value)}
                   />
                 </div>
-                <div className="grid gap-2">
+                <div className="grid gap-2 w-full">
                   <Label>Confirm Password</Label>
                   <Input
                     type="password"
@@ -72,21 +72,19 @@ const UpdatePassword = () => {
                     onChange={e => setConfirmPassword(e.target.value)}
                   />
                 </div>
-                <div className="w-full h-2 mt-10 mx-auto">
-                  {loading ? (
-                    <Button disabled className="mx-auto">
-                      Updating...
-                    </Button>
-                  ) : (
-                    <Button
-                      type="submit"
-                      className="mx-auto"
-                      onClick={handleUpdatePassword}
-                    >
-                      Update Password
-                    </Button>
-                  )}
-                </div>
+                {loading ? (
+                  <Button disabled className="mx-auto w-full">
+                    Updating...
+                  </Button>
+                ) : (
+                  <Button
+                    type="submit"
+                    className="mx-auto w-full cursor-pointer"
+                    onClick={handleUpdatePassword}
+                  >
+                    Update Password
+                  </Button>
+                )}
               </div>
             </form>
           </div>

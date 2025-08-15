@@ -13,58 +13,59 @@ const userSlice = createSlice({
   },
   reducers: {
     loginRequest(state, action) {
-      (state.loading = true),
-        (state.user = {}),
-        (state.isAuthenticated = false),
-        (state.error = null);
+      state.loading = true;
+      state.user = {};
+      state.isAuthenticated = false;
+      state.error = null;
     },
     loginSuccess(state, action) {
-      (state.loading = false),
-        (state.user = action.payload),
-        (state.isAuthenticated = true),
-        (state.error = null);
+      state.loading = false;
+      state.user = action.payload;
+      state.isAuthenticated = true;
+      state.error = null;
     },
     loginFailed(state, action) {
-      (state.loading = false),
-        (state.user = {}),
-        (state.isAuthenticated = false),
-        (state.error = action.payload);
+      state.loading = false;
+      state.user = {};
+      state.isAuthenticated = false;
+      state.error = action.payload;
     },
     //logged in user data get
     getUserRequest(state, action) {
-      (state.loading = true),
-        (state.user = {}),
-        (state.isAuthenticated = false),
-        (state.error = null);
+      state.loading = true;
+      state.user = {};
+      state.isAuthenticated = false;
+      state.error = null;
     },
     getUserSuccess(state, action) {
-      (state.loading = false),
-        (state.user = action.payload),
-        (state.isAuthenticated = true),
-        (state.error = null);
+      state.loading = false;
+      state.user = action.payload;
+      state.isAuthenticated = true;
+      state.error = null;
     },
     getUserFailed(state, action) {
-      (state.loading = false),
-        (state.user = {}),
-        (state.isAuthenticated = false),
-        (state.error = action.payload);
+      state.loading = false;
+      state.user = {};
+      state.isAuthenticated = false;
+      state.error = action.payload;
     },
     //logout in user data get
     logoutRequest(state, action) {
-      (state.loading = true), (state.message = null), (state.error = null);
+      state.loading = true;
+      state.message = null;
+      state.error = null;
     },
     logoutSuccess(state, action) {
-      (state.loading = false),
-        (state.message = action.payload),
-        (state.user = {}),
-        (state.isAuthenticated = false),
-        (state.error = null);
+      state.loading = false;
+      state.message = action.payload;
+      state.isAuthenticated = false;
+      state.error = null;
     },
     logoutFailed(state, action) {
-      (state.loading = false),
-        (state.message = null),
-        (state.isAuthenticated = false),
-        (state.error = action.payload);
+      state.loading = false;
+      state.message = null;
+      state.isAuthenticated = false;
+      state.error = action.payload;
     },
     //manage update profile
     updateProfileRequest(state, action) {
