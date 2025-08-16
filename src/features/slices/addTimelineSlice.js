@@ -10,44 +10,44 @@ const addTimelineSlice = createSlice({
     addTimeline: [],
   },
   reducers: {
-    getAllTimellineRequest: (state, action) => {
+    getAllTimellineRequest(state, action) {
       state.loading = true;
       state.error = null;
       state.addTimeline = [];
     },
-    getAllTimellineSuccess: (state, action) => {
+    getAllTimellineSuccess(state, action) {
       state.loading = false;
       state.error = null;
       state.addTimeline = action.payload;
     },
-    getAllTimellineFailed: (state, action) => {
+    getAllTimellineFailed(state, action) {
       state.loading = false;
       state.error = action.payload;
       state.addTimeline = state.addTimeline;
     },
     // ADD A NEW TIMELINE
-    addTimellineRequest: (state, action) => {
+    addTimellineRequest(state, action) {
       state.loading = true;
       state.error = null;
       state.message = null;
     },
-    addTimellineSuccess: (state, action) => {
+    addTimellineSuccess(state, action) {
       state.loading = false;
       state.error = null;
       state.message = action.payload;
     },
-    addTimellineFailed: (state, action) => {
+    addTimellineFailed(state, action) {
       state.loading = false;
       state.error = action.payload;
       state.message = null;
     },
-    resetAllTimeline: (state, action) => {
+    resetAllTimeline(state, action) {
       state.loading = false;
       state.error = null;
       state.message = null;
       state.addTimeline = state.addTimeline;
     },
-    clearAllErrors: (state, action) => {
+    clearAllErrors(state, action) {
       state.error = null;
     },
   },
@@ -78,7 +78,12 @@ export const addNewTimeline = timelineData => async dispatch => {
     const { data } = await axios.post(
       'http://localhost:4000/api/v1/timeline/create',
       timelineData,
-      { withCredentials: true }
+      {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
     );
     dispatch(addTimelineSlice.actions.addTimellineSuccess(data.message));
   } catch (error) {

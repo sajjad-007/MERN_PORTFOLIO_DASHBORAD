@@ -13,6 +13,7 @@ import { getLoginUser } from './features/slices/userSlice';
 import { useEffect } from 'react';
 import { getAllMessage } from './features/slices/messageSlice';
 import { gettAllTimeline } from './features/slices/addTimelineSlice';
+import { getAllSkill } from './features/slices/addSkills';
 function App() {
   const dispatch = useDispatch();
 
@@ -20,6 +21,7 @@ function App() {
     dispatch(getLoginUser());
     dispatch(getAllMessage());
     dispatch(gettAllTimeline());
+    dispatch(getAllSkill());
   }, []);
 
   return (
