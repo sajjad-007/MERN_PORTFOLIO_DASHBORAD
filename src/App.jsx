@@ -11,11 +11,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { getLoginUser } from './features/slices/userSlice';
 import { useEffect } from 'react';
+import { getAllMessage } from './features/slices/messageSlice';
+import { gettAllTimeline } from './features/slices/addTimelineSlice';
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getLoginUser());
+    dispatch(getAllMessage());
+    dispatch(gettAllTimeline());
   }, []);
 
   return (

@@ -268,7 +268,7 @@ const UpdateProfile = () => {
                   className="w-full text-lg"
                 >
                   <Loader2Icon className="animate-spin" />
-                  Please wait
+                  Profile Updating..
                 </Button>
               </div>
             )}

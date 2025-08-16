@@ -50,11 +50,14 @@ const Messages = () => {
         <CardHeader className="flex gap-4 sm:justify-between sm:flex-row sm:items-center ">
           <CardTitle>Messages ({messages.length})</CardTitle>
         </CardHeader>
-        <CardContent >
+        <CardContent className="grid grid-cols-2 gap-2">
           {messages && messages.length > 0
             ? messages.map(item => {
                 return (
-                  <Card key={item._id} className="grid gap-2 px-2 relative mt-2">
+                  <Card
+                    key={item._id}
+                    className="grid gap-2 px-2 relative mt-2 "
+                  >
                     <CardDescription className="text-slate-950">
                       <span className="font-bold mr-2">Sender Name:</span>
                       {item.senderName}
@@ -69,15 +72,15 @@ const Messages = () => {
                     </CardDescription>
                     <CardFooter className="justify-end absolute right-0 top-5">
                       {loading && messageId === item._id ? (
-                        <Button disabled className="cursor-not-allowed">
+                        <Button disabled className="cursor-not-allowed ">
                           <Loader2 />
                         </Button>
                       ) : (
                         <Button
-                          className="cursor-pointer  hover:bg-destructive transition-all "
+                          className="cursor-pointer  hover:bg-destructive transition-all text-4xl"
                           onClick={() => handleMessageDelete(item._id)}
                         >
-                          <Trash2 size={20} />
+                          <Trash2 size={20}/>
                         </Button>
                       )}
                     </CardFooter>
