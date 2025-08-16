@@ -129,7 +129,7 @@ const AddTimeline = () => {
                 Add Timeline
               </Button>
             ) : (
-              <Button size="sm" disabled className="w-full text-lg">
+              <Button size="sm" disabled className="w-full">
                 <Loader2Icon className="animate-spin" />
                 Timeline Updating..
               </Button>

@@ -68,12 +68,18 @@ export const getAllSkill = () => async dispatch => {
   }
 };
 // CREATE A SKILL
-export const addSkill = () => async dispatch => {
+export const addSkill = myData => async dispatch => {
   dispatch(addSkillSlice.actions.addSkillRequest());
   try {
     const { data } = await axios.post(
       'http://localhost:4000/api/v1/addSkill/create',
-      { withCredentials: true }
+      myData,
+      {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
     );
     dispatch(addSkillSlice.actions.addSkillSuccess(data.message));
   } catch (error) {
@@ -84,7 +90,7 @@ export const addSkill = () => async dispatch => {
 export const resetAllAddSkill = () => async dispatch => {
   dispatch(addSkillSlice.actions.resetAllAddSkill());
 };
-export const clearAllSkillS = () => async dispatch => {
+export const clearAllSkillSError = () => async dispatch => {
   dispatch(addSkillSlice.actions.clearAllError());
 };
 
