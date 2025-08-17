@@ -101,6 +101,7 @@ export const addNewProject = myData => async dispatch => {
         },
       }
     );
+    console.log(data)
     dispatch(projectsSlice.actions.addPorjectSuccess(data.message));
   } catch (error) {
     dispatch(

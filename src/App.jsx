@@ -15,6 +15,7 @@ import { getAllMessage } from './features/slices/messageSlice';
 import { gettAllTimeline } from './features/slices/addTimelineSlice';
 import { getAllSkill } from './features/slices/addSkills';
 import { getAllSoftwareApplication } from './features/slices/addSoftwareApplication';
+import { getAllProject } from './features/slices/projectsSlice';
 function App() {
   const dispatch = useDispatch();
 
@@ -23,6 +24,7 @@ function App() {
     dispatch(getAllMessage());
     dispatch(gettAllTimeline());
     dispatch(getAllSkill());
+    dispatch(getAllProject());
     dispatch(getAllSoftwareApplication());
   }, []);
 
