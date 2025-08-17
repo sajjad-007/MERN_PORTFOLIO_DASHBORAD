@@ -5,6 +5,7 @@ import messageReducer from './slices/messageSlice';
 import addTimelineReducer from './slices/addTimelineSlice';
 import addSkillReducer from './slices/addSkills';
 import softwareApplicationReducer from './slices/addSoftwareApplication';
+import projectReducer from './slices/projectsSlice'
 export const store = configureStore({
   reducer: {
     user: userReducer,
@@ -13,5 +14,6 @@ export const store = configureStore({
     timeline: addTimelineReducer,
     skill: addSkillReducer,
     application: softwareApplicationReducer,
+    project: projectReducer
   },
 });
