@@ -4,6 +4,7 @@ import passForgotResetReducer from './slices/passForgotResetSlice';
 import messageReducer from './slices/messageSlice';
 import addTimelineReducer from './slices/addTimelineSlice';
 import addSkillReducer from './slices/addSkills';
+import softwareApplicationReducer from './slices/addSoftwareApplication';
 export const store = configureStore({
   reducer: {
     user: userReducer,
@@ -11,5 +12,6 @@ export const store = configureStore({
     message: messageReducer,
     timeline: addTimelineReducer,
     skill: addSkillReducer,
+    application: softwareApplicationReducer,
   },
 });

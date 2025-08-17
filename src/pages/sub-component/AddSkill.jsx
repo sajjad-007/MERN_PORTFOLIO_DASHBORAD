@@ -19,6 +19,7 @@ const AddSkill = () => {
   const [icons, setIcons] = useState('');
   const [imgPreview, setImagePreview] = useState('');
 
+  //handle input file and set image preview
   const handleImageUpload = e => {
     const file = e.target.files[0];
     const reader = new FileReader();

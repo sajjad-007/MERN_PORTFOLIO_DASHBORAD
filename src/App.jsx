@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 import { getAllMessage } from './features/slices/messageSlice';
 import { gettAllTimeline } from './features/slices/addTimelineSlice';
 import { getAllSkill } from './features/slices/addSkills';
+import { getAllSoftwareApplication } from './features/slices/addSoftwareApplication';
 function App() {
   const dispatch = useDispatch();
 
@@ -22,6 +23,7 @@ function App() {
     dispatch(getAllMessage());
     dispatch(gettAllTimeline());
     dispatch(getAllSkill());
+    dispatch(getAllSoftwareApplication());
   }, []);
 
   return (

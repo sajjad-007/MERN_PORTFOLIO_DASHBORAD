@@ -54,6 +54,7 @@ const UpdateProfile = () => {
   );
   //Non-Required filed end
   const dispatch = useDispatch();
+  //handle input file and set image preview
   //handle avatar preview using fileReader() method
   const hadnleAvatarPreview = e => {
     const file = e.target.files[0];
@@ -262,11 +263,7 @@ const UpdateProfile = () => {
               </div>
             ) : (
               <div className="mx-auto w-full">
-                <Button
-                  size="sm"
-                  disabled
-                  className="w-full text-lg"
-                >
+                <Button size="sm" disabled className="w-full">
                   <Loader2Icon className="animate-spin" />
                   Profile Updating..
                 </Button>

@@ -41,6 +41,22 @@ const addTimelineSlice = createSlice({
       state.error = action.payload;
       state.message = null;
     },
+    // DELETE TIMELINE
+    deleteTimelineRequest(state, action) {
+      state.loading = true;
+      state.error = null;
+      state.message = null;
+    },
+    deleteTimelineSuccess(state, action) {
+      state.loading = false;
+      state.error = null;
+      state.message = action.payload;
+    },
+    deleteTimelineFailed(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+      state.message = null;
+    },
     resetAllTimeline(state, action) {
       state.loading = false;
       state.error = null;
@@ -86,9 +102,25 @@ export const addNewTimeline = timelineData => async dispatch => {
       }
     );
     dispatch(addTimelineSlice.actions.addTimellineSuccess(data.message));
+    dispatch(addTimelineSlice.actions.clearAllErrors());
   } catch (error) {
     dispatch(
       addTimelineSlice.actions.addTimellineFailed(error.response.data.message)
+    );
+  }
+};
+export const deleteATimeline = id => async dispatch => {
+  dispatch(addTimelineSlice.actions.deleteTimelineRequest());
+  try {
+    const { data } = await axios.delete(
+      `http://localhost:4000/api/v1/timeline/delete/${id}`,
+      { withCredentials: true }
+    );
+    dispatch(addTimelineSlice.actions.deleteTimelineSuccess(data.message));
+    dispatch(addTimelineSlice.actions.clearAllErrors());
+  } catch (error) {
+    dispatch(
+      addTimelineSlice.actions.deleteTimelineFailed(error.response.data.message)
     );
   }
 };
