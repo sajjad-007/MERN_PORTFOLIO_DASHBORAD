@@ -55,7 +55,7 @@ const HomePage = () => {
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed inset-y-0 left-0 hidden w-14 flex-col border bg-background z-50 sm:flex">
         <nav className="flex flex-col items-center gap-4 px-2 sm:py-5 ">
-          <Link className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold text-sidebar-foreground md:h-8 md:w-8 md:text-base md:mt-5">
+          <Link className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold text-sidebar-foreground md:h-8 md:w-8 md:text-base md:mt-2">
             <Package2 className="h-5 w-5 transition-all  group-hover:scale-110" />
             <span className="sr-only">hello world</span>
           </Link>
@@ -83,30 +83,6 @@ const HomePage = () => {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          {/* Add Skill */}
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  className={`flex h-9 w-9 pl-1.5 items-center justify-between rounded-lg  ${
-                    active === 'Add Skill'
-                      ? 'text-card bg-chart-2'
-                      : 'text-muted-foreground hover:text-foreground'
-                  } transition-colors  md:h-8 md:w-8`}
-                  onClick={() => setActive('Add Skill')}
-                >
-                  <PencilRuler className="h-5 w-5 " />
-                  <span className="sr-only">Add Skill</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent
-                side="right"
-                className="bg-foreground text-accent px-2 py-2 rounded-lg text-sm font-medium"
-              >
-                Add Skill
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
           {/* project */}
           <TooltipProvider>
             <Tooltip>
@@ -128,6 +104,30 @@ const HomePage = () => {
                 className="bg-foreground text-accent px-2 py-2 rounded-lg text-sm font-medium"
               >
                 Add Poject
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          {/* Add Skill */}
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  className={`flex h-9 w-9 pl-1.5 items-center justify-between rounded-lg  ${
+                    active === 'Add Skill'
+                      ? 'text-card bg-chart-2'
+                      : 'text-muted-foreground hover:text-foreground'
+                  } transition-colors  md:h-8 md:w-8`}
+                  onClick={() => setActive('Add Skill')}
+                >
+                  <PencilRuler className="h-5 w-5 " />
+                  <span className="sr-only">Add Skill</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent
+                side="right"
+                className="bg-foreground text-accent px-2 py-2 rounded-lg text-sm font-medium"
+              >
+                Add Skill
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -155,30 +155,6 @@ const HomePage = () => {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          {/* Message */}
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  className={`flex h-9 w-9 pl-1.5 items-center justify-between rounded-lg  ${
-                    active === 'Message'
-                      ? 'text-card bg-chart-2'
-                      : 'text-muted-foreground hover:text-foreground'
-                  } transition-colors md:h-8 md:w-8`}
-                  onClick={() => setActive('Message')}
-                >
-                  <MessageSquareMore className="h-5 w-5 " />
-                  <span className="sr-only">Message</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent
-                side="right"
-                className="bg-foreground text-accent px-2 py-2 rounded-lg text-sm font-medium"
-              >
-                Message
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
           {/* Add Uses */}
           <TooltipProvider>
             <Tooltip>
@@ -200,6 +176,30 @@ const HomePage = () => {
                 className="bg-foreground text-accent px-2 py-2 rounded-lg text-sm font-medium"
               >
                 Add Uses
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          {/* Message */}
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  className={`flex h-9 w-9 pl-1.5 items-center justify-between rounded-lg  ${
+                    active === 'Message'
+                      ? 'text-card bg-chart-2'
+                      : 'text-muted-foreground hover:text-foreground'
+                  } transition-colors md:h-8 md:w-8`}
+                  onClick={() => setActive('Message')}
+                >
+                  <MessageSquareMore className="h-5 w-5 " />
+                  <span className="sr-only">Message</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent
+                side="right"
+                className="bg-foreground text-accent px-2 py-2 rounded-lg text-sm font-medium"
+              >
+                Message
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
