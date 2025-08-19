@@ -59,7 +59,6 @@ const AddProject = () => {
       dispatch(clearAllProjectError());
     }
     if (message) {
-      console.log('jsx:', message);
       toast.success(message);
       dispatch(resetAllProjects());
       dispatch(getAllProject());

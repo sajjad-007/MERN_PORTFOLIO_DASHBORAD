@@ -68,11 +68,12 @@ const ManageProjects = () => {
           <Table>
             <TableHeader>
               <TableRow>
+                <TableHead>Image</TableHead>
                 <TableHead>Title</TableHead>
-                <TableHead>Stack</TableHead>
-                <TableHead>Deployed</TableHead>
-                <TableHead>Description</TableHead>
-                <TableHead className="text-center">Actions</TableHead>
+                <TableHead className="hidden md:table-cell">Stack</TableHead>
+                <TableHead className="hidden md:table-cell">Deployed</TableHead>
+                <TableHead className="hidden md:table-cell">Description</TableHead>
+                <TableHead className="text-center md:table-cell">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -80,10 +81,23 @@ const ManageProjects = () => {
                 projects.map(item => {
                   return (
                     <TableRow className="bg-accent" key={item._id}>
+                      <TableCell>
+                        <div className="font-medium">
+                          <img
+                            src={item.projectImage && item.projectImage.url}
+                            alt={item.title}
+                            className="w-16 h-16"
+                          />
+                        </div>
+                      </TableCell>
                       <TableCell>{item.title}</TableCell>
-                      <TableCell>{item.stack}</TableCell>
-                      <TableCell className="mx-auto">{item.deployed}</TableCell>
-                      <TableCell className="mx-auto">
+                      <TableCell className="hidden md:table-cell mx-auto">
+                        {item.stack}
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell mx-auto">
+                        {item.deployed}
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell mx-auto">
                         {item.description}
                       </TableCell>
 

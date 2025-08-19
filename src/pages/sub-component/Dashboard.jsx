@@ -141,14 +141,14 @@ const Dashboard = () => {
                             </Badge>
                           </TableCell>
                           <TableCell className="md:table-cell text-center">
-                            <Link to={`/update/project/:${item._id}`}>
+                            <Link to={`/update/project/${item._id}`}>
                               <Button className="cursor-pointer md:table-cell">
                                 Update
                               </Button>
                             </Link>
                           </TableCell>
                           <TableCell>
-                            <Link to={`/view/project/:${item._id}`}>
+                            <Link to={`/view/project/${item._id}`}>
                               <Button className="cursor-pointer">Visit</Button>
                             </Link>
                           </TableCell>
