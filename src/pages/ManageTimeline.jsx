@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Table,
   TableBody,
+  TableCell,
   TableHead,
   TableHeader,
   TableRow,
@@ -68,15 +69,15 @@ const ManageTimeline = () => {
                 addTimeline.map(item => {
                   return (
                     <TableRow className="bg-accent" key={item._id}>
-                      <TableHead>{item.title}</TableHead>
-                      <TableHead>{item.description}</TableHead>
-                      <TableHead className="mx-auto">
+                      <TableCell>{item.title}</TableCell>
+                      <TableCell>{item.description}</TableCell>
+                      <TableCell className="mx-auto">
                         {item.timeline.from}
-                      </TableHead>
-                      <TableHead className="mx-auto">
+                      </TableCell>
+                      <TableCell className="mx-auto">
                         {item.timeline.to ? item.timeline.to : 'Present'}
-                      </TableHead>
-                      <TableHead className="text-center">
+                      </TableCell>
+                      <TableCell className="text-center">
                         {loading && timeDeleteLoading == item._id ? (
                           <div>
                             <Button disabled className="cursor-not-allowed">
@@ -91,7 +92,7 @@ const ManageTimeline = () => {
                             Delete
                           </Button>
                         )}
-                      </TableHead>
+                      </TableCell>
                     </TableRow>
                   );
                 })

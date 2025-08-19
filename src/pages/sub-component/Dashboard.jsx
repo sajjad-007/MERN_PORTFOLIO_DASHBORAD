@@ -80,7 +80,9 @@ const Dashboard = () => {
                 </CardTitle>
               </CardHeader>
               <CardFooter>
-                <Button className="cursor-pointer">Manage Projects</Button>
+                <Link to={'/manage/projects'}>
+                  <Button className="cursor-pointer">Manage Projects</Button>
+                </Link>
               </CardFooter>
             </Card>
             <Card className="flex flex-col justify-center">

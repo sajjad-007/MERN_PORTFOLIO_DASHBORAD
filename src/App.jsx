@@ -16,6 +16,8 @@ import { gettAllTimeline } from './features/slices/addTimelineSlice';
 import { getAllSkill } from './features/slices/addSkills';
 import { getAllSoftwareApplication } from './features/slices/addSoftwareApplication';
 import { getAllProject } from './features/slices/projectsSlice';
+import ViewProject from './pages/ViewProject';
+import UpdateProject from './pages/UpdateProject';
 function App() {
   const dispatch = useDispatch();
 
@@ -38,8 +40,8 @@ function App() {
         <Route path="/manage/skills" element={<ManageSkill />} />
         <Route path="/manage/timeline" element={<ManageTimeline />} />
         <Route path="/manage/projects" element={<ManageProjects />} />
-        <Route path="/view/project/:id" />
-        <Route path="/update/project/:id" />
+        <Route path="/view/project/:id" element={<ViewProject/>} />
+        <Route path="/update/project/:id" element={<UpdateProject/>}/>
       </Routes>
       <ToastContainer position="top-right" theme="dark" />
     </Router>
