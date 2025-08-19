@@ -47,8 +47,6 @@ const ViewProject = () => {
         });
     };
     getSingleProject();
-  }, [id]);
-  useEffect(() => {
     if (error) {
       toast.error(error);
       dispatch(clearAllProjectError());
@@ -58,7 +56,8 @@ const ViewProject = () => {
       dispatch(resetAllProjects());
       dispatch(getAllProject());
     }
-  }, [dispatch, loading, error, message]);
+  }, [id,dispatch, loading, error, message]);
+  
   const descriptionSlice = description.split(', ');
   const technologiesSlice = technologies.split(', ');
   return (

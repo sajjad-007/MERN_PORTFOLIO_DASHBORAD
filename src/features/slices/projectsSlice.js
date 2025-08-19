@@ -96,6 +96,7 @@ export const getAllProject = () => async dispatch => {
     dispatch(
       projectsSlice.actions.getAllProjectsSuccess(data.searchAllProject)
     );
+    
   } catch (error) {
     dispatch(
       projectsSlice.actions.getAllProjectsFailed(error.response.data.message)
@@ -142,12 +143,18 @@ export const deleteProject = id => async dispatch => {
   }
 };
 // UPDATE PROJECT
-export const updateProject = id => async dispatch => {
+export const updateProject = (id, mydata) => async dispatch => {
   dispatch(projectsSlice.actions.updatePorjectRequest());
   try {
-    const { data } = await axios.delete(
+    const { data } = await axios.put(
       `http://localhost:4000/api/v1/project/update/${id}`,
-      { withCredentials: true }
+      mydata,
+      {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
     );
     dispatch(projectsSlice.actions.updatePorjectSuccess(data.message));
     dispatch(projectsSlice.actions.clearAllError());

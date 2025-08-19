@@ -103,7 +103,7 @@ const AddProject = () => {
                     <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 ">
                       <Textarea
                         type="text"
-                        placeholder="Feature 1.  Feature 2.  Feature 3. "
+                        placeholder="Feature 1, Feature 2,  Feature 3, "
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                       />
