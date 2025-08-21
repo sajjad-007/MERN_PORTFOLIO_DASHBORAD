@@ -123,7 +123,7 @@ export const login = (email, password) => async dispatch => {
   dispatch(userSlice.actions.loginRequest());
   try {
     const { data } = await axios.post(
-      'http://localhost:4000/api/v1/user/login',
+      'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/user/login',
       { email, password },
       {
         withCredentials: true,
@@ -144,7 +144,7 @@ export const getLoginUser = () => async dispatch => {
   dispatch(userSlice.actions.getUserRequest());
   try {
     const { data } = await axios.get(
-      'http://localhost:4000/api/v1/user/getuser',
+      'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/user/getuser',
       {
         withCredentials: true,
       }
@@ -165,7 +165,7 @@ export const logoutUser = () => async dispatch => {
   dispatch(userSlice.actions.logoutRequest());
   try {
     const { data } = await axios.post(
-      'http://localhost:4000/api/v1/user/logout',
+      'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/user/logout',
       {
         withCredentials: true,
       }
@@ -182,7 +182,7 @@ export const updateProfile = myData => async dispatch => {
   dispatch(userSlice.actions.updateProfileRequest());
   try {
     const { data } = await axios.put(
-      'http://localhost:4000/api/v1/user/updateProfile',
+      'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/user/updateProfile',
       myData, // x(warning) => don't use {mydata} fomr-data in curly bracket  the server receives a nested structure instead of the actual FormData.
       {
         withCredentials: true,
@@ -206,7 +206,7 @@ export const updatePassword =
     dispatch(userSlice.actions.updatePasswordRequest());
     try {
       const { data } = await axios.put(
-        'http://localhost:4000/api/v1/user/password/update',
+        'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/user/password/update',
         { currentPassword, newPassword, confirmPassword }, // x(warning) => don't use {mydata} form-data in curly bracket  the server receives a nested structure instead of the actual FormData.
         {
           withCredentials: true,

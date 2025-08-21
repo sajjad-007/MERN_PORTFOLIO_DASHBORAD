@@ -77,7 +77,7 @@ export const manageSkill = () => async dispatch => {
   dispatch(userSlice.actions.manageSkillRequest());
   try {
     const { data } = await axios.post(
-      'http://localhost:4000/api/v1/addSkill/create',
+      'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/addSkill/create',
       {},
       {
         withCredentials: true,
@@ -99,7 +99,7 @@ export const manageTimeline = () => async dispatch => {
   dispatch(userSlice.actions.manageTimelineRequest());
   try {
     const { data } = await axios.post(
-      'http://localhost:4000/api/v1/timeline/create',
+      'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/timeline/create',
       {},
       {
         withCredentials: true,
@@ -120,7 +120,7 @@ export const manageProject = () => async dispatch => {
   dispatch(userSlice.actions.manageProjectsRequest());
   try {
     const { data } = await axios.post(
-      'http://localhost:4000/api/v1/project/create',
+      'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/project/create',
       {},
       {
         withCredentials: true,

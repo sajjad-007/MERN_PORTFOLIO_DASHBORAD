@@ -72,7 +72,7 @@ export const getAllSoftwareApplication = () => async dispatch => {
   dispatch(softwareApplicationSlice.actions.getAllSoftwareApplicationRequest());
   try {
     const { data } = await axios.get(
-      'http://localhost:4000/api/v1/softApplication/get',
+      'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/softApplication/get',
       { withCredentials: true }
     );
     dispatch(
@@ -93,7 +93,7 @@ export const addSoftwareApplication = myData => async dispatch => {
   dispatch(softwareApplicationSlice.actions.addSoftwareApplicationRequest());
   try {
     const { data } = await axios.post(
-      'http://localhost:4000/api/v1/softApplication/create',
+      'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/softApplication/create',
       myData,
       {
         withCredentials: true,
@@ -121,7 +121,7 @@ export const deleteSoftwareApplication = id => async dispatch => {
   dispatch(softwareApplicationSlice.actions.deleteSoftwareApplicationRequest());
   try {
     const { data } = await axios.delete(
-      `http://localhost:4000/api/v1/softApplication/delete/${id}`,
+      `https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/softApplication/delete/${id}`,
       { withCredentials: true }
     );
     dispatch(

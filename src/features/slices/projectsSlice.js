@@ -90,13 +90,12 @@ export const getAllProject = () => async dispatch => {
   dispatch(projectsSlice.actions.getAllProjectsRequest());
   try {
     const { data } = await axios.get(
-      'http://localhost:4000/api/v1/project/getall',
+      'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/project/getall',
       { withCredentials: true }
     );
     dispatch(
       projectsSlice.actions.getAllProjectsSuccess(data.searchAllProject)
     );
-    
   } catch (error) {
     dispatch(
       projectsSlice.actions.getAllProjectsFailed(error.response.data.message)
@@ -108,7 +107,7 @@ export const addNewProject = myData => async dispatch => {
   dispatch(projectsSlice.actions.addPorjectRequest());
   try {
     const { data } = await axios.post(
-      'http://localhost:4000/api/v1/project/create',
+      'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/project/create',
       myData,
       {
         withCredentials: true,
@@ -131,7 +130,7 @@ export const deleteProject = id => async dispatch => {
   dispatch(projectsSlice.actions.deletePorjectRequest());
   try {
     const { data } = await axios.delete(
-      `http://localhost:4000/api/v1/project/delete/${id}`,
+      `https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/project/delete/${id}`,
       { withCredentials: true }
     );
     dispatch(projectsSlice.actions.deletePorjectSuccess(data.message));
@@ -147,7 +146,7 @@ export const updateProject = (id, mydata) => async dispatch => {
   dispatch(projectsSlice.actions.updatePorjectRequest());
   try {
     const { data } = await axios.put(
-      `http://localhost:4000/api/v1/project/update/${id}`,
+      `https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/project/update/${id}`,
       mydata,
       {
         withCredentials: true,

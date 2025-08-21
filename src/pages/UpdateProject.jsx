@@ -49,9 +49,12 @@ const UpdateProject = () => {
   useEffect(() => {
     const getSingleProject = async () => {
       await axios
-        .get(`http://localhost:4000/api/v1/project/get/${id}`, {
-          withCredentials: true,
-        })
+        .get(
+          `https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/project/get/${id}`,
+          {
+            withCredentials: true,
+          }
+        )
         .then(res => {
           // console.log(res)
           setTitle(res.data.findProject.title);
@@ -114,9 +117,10 @@ const UpdateProject = () => {
                   Update Your Project
                 </h2>
                 <Link to={'/'}>
-                  <Button className="capitalize cursor-pointer">return to dashboard</Button>
+                  <Button className="capitalize cursor-pointer">
+                    return to dashboard
+                  </Button>
                 </Link>
-
               </div>
               <div className="mt-10 flex flex-col gap-5 ">
                 <div className="w-full sm:col-span-4">

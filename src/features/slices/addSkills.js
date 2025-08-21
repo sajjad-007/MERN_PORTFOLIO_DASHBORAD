@@ -87,7 +87,7 @@ export const getAllSkill = () => async dispatch => {
   dispatch(addSkillSlice.actions.getAllSkillRequest());
   try {
     const { data } = await axios.get(
-      'http://localhost:4000/api/v1/addSkill/getall',
+      'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/addSkill/getall',
       { withCredentials: true }
     );
     dispatch(addSkillSlice.actions.getAllSkillSuccess(data.allSkill));
@@ -102,7 +102,7 @@ export const addSkill = myData => async dispatch => {
   dispatch(addSkillSlice.actions.addSkillRequest());
   try {
     const { data } = await axios.post(
-      'http://localhost:4000/api/v1/addSkill/create',
+      'https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/addSkill/create',
       myData,
       {
         withCredentials: true,
@@ -122,7 +122,7 @@ export const deleteSkill = id => async dispatch => {
   dispatch(addSkillSlice.actions.deleteSkillRequest());
   try {
     const { data } = await axios.delete(
-      `http://localhost:4000/api/v1/addSkill/delete/${id}`,
+      `https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/addSkill/delete/${id}`,
       { withCredentials: true }
     );
     dispatch(addSkillSlice.actions.deleteSkillSuccess(data.message));
@@ -136,19 +136,18 @@ export const deleteSkill = id => async dispatch => {
 
 // update skill
 export const updateSkill = (id, proficiency) => async dispatch => {
-
   dispatch(addSkillSlice.actions.updateSkillRequest());
   try {
-    const {data} = await axios.put(
-      `http://localhost:4000/api/v1/addSkill/update/${id}`,
+    const { data } = await axios.put(
+      `https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/addSkill/update/${id}`,
       { proficiency },
       {
         withCredentials: true,
         headers: { 'Content-Type': 'application/json' },
-      },
+      }
     );
     dispatch(addSkillSlice.actions.updateSkillSuccess(data.message)),
-    dispatch(addSkillSlice.actions.clearAllError())
+      dispatch(addSkillSlice.actions.clearAllError());
   } catch (error) {
     dispatch(
       addSkillSlice.actions.updateSkillFailed(error.response.data.message)

@@ -26,9 +26,12 @@ const ViewProject = () => {
   useEffect(() => {
     const getSingleProject = async () => {
       await axios
-        .get(`http://localhost:4000/api/v1/project/get/${id}`, {
-          withCredentials: true,
-        })
+        .get(
+          `https://mern-portfolio-backend-2-zki2.onrender.com/api/v1/project/get/${id}`,
+          {
+            withCredentials: true,
+          }
+        )
         .then(res => {
           setTitle(res.data.findProject.title);
           setDescription(res.data.findProject.description);
@@ -56,8 +59,8 @@ const ViewProject = () => {
       dispatch(resetAllProjects());
       dispatch(getAllProject());
     }
-  }, [id,dispatch, loading, error, message]);
-  
+  }, [id, dispatch, loading, error, message]);
+
   const descriptionSlice = description.split(', ');
   const technologiesSlice = technologies.split(', ');
   return (
@@ -65,9 +68,16 @@ const ViewProject = () => {
       <div className="w-[100%] px-5 md:w-[650px]">
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="font-semibold leading-7 text-gray-900 text-3xl text-center">
-              {title}
-            </h2>
+            <div className="flex items-center justify-between">
+              <h2 className="font-semibold leading-7 text-gray-900 text-xl text-center uppercase">
+                {title}
+              </h2>
+              <Link to={'/'}>
+                <Button className="capitalize cursor-pointer">
+                  return to dashboard
+                </Button>
+              </Link>
+            </div>
             <div className=" mt-4 flex flex-col gap-5">
               {/* title */}
               <div className="col-span-full">
@@ -81,7 +91,7 @@ const ViewProject = () => {
                             : '/DASHBOARD/public/react.png'
                         }
                         alt="preview image"
-                        className="mx-auto h-[300px] w-[400px] text-gray-300"
+                        className="w-full h-auto text-gray-300"
                       />
                     ) : (
                       <svg
